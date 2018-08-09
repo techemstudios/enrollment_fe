@@ -17,10 +17,11 @@ install:
 
 script:
   - npm run build
+  - mkdir build; mv index.html build; mv dist build
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: .
+  local_dir: build
   on:
     branch: master
