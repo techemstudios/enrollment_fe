@@ -17,7 +17,6 @@ install:
 
 script:
   - npm run build
-  - mkdir build; mv index.html build; mv dist build
 deploy:
   provider: pages
   skip_cleanup: true
