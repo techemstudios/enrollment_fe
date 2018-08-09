@@ -6,7 +6,7 @@
     <main>
         <h2>Click the button to get Sections</h2>
         <button id="btn" class="" v-on:click="getSections">Get Upcoming Classes</button>
-
+        <br />
         <div v-if="loading">
           <img src="../src/assets/loader.gif"/>
           Loading...
@@ -14,43 +14,48 @@
 
       <div class="wrapper">
         <div class="row">
-          <div v-for="joke in jokes" :key="joke.id">
+          <div v-for="section in sections" :key="section.id">
           <div class="col-md-4 cards">
-             <img src="https://placeimg.com/300/300/nature" class="img-responsive" alt="Random images placeholder"> 
+             <img src="../src/assets/spaghett.jpg" class="img-responsive" alt="Random images placeholder">
             <div>
-              <h3>{{ joke.id }}</h3>
-              <p>{{ joke.joke }}</p>
-              <p>{{ joke.category }}</p>
+              <h3>{{ section.id }}</h3>
+              <p>{{ section.description }}</p>
+              <p>{{ section.start_time }}</p>
             </div>
           </div>
+          </div>
         </div>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-  
+import axios from 'axios'
+
 export default {
   name: 'app',
   data () {
     return {
-      jokes: [],
+      sections: [],
       loading: false
     }
-  }, 
-  methods: {
-    getJokes: function () {
-      this.loading = true;
-      axios.get("http://api.icndb.com/jokes/random/10")
-      .then((response)  =>  {
-        this.loading = false;
-        this.jokes = response.data.value;
-      }, (error)  =>  {
-        this.loading = false;
-      })
-    }
   },
+  methods: {
+    getSections: function () {
+      this.loading = true
+      axios.get('https://j5ul824zvb.execute-api.us-east-1.amazonaws.com/dev/api/sections')
+        .then((response) => {
+          this.loading = false
+          this.sections = response.data
+        }, (err) => {
+          if (err) {
+            console.log(err.stack)
+          }
+          this.loading = false
+        })
+    }
+  }
 }
 </script>
 
@@ -65,12 +70,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
 main {
   text-align: center;
   margin-top: 40px;
 }
-
 header {
   margin: 0;
   height: 56px;
@@ -88,8 +91,6 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
-
-
 button {
   background: #51B767;
   color: #ffffff;
@@ -99,7 +100,6 @@ button {
   font-size: 15px;
   border: 0;
 }
-
 .cards {
   background: #F5F5F5;
   height:400px;
@@ -108,11 +108,14 @@ button {
   transform: translateY(-0.5em);
   background: #EBEBEB;
 }
-
 .cards {
-   column-count: 1;
+  column-count: 1;
   column-gap: 1em;
-    margin-top: 70px;
-
-} 
+  margin-top: 70px;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style>
