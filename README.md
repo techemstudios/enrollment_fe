@@ -2,6 +2,13 @@
 
 > A Vue.js project
 
+To get this setup, I did:
+
+```bash
+npm install -g vue-cli
+vue init webpack enrollment_api
+```
+
 ## Build Setup
 
 ``` bash
