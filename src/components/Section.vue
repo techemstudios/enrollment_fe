@@ -65,28 +65,6 @@ header span {
   padding-top: 16px;
   text-align: center;
 }
-button {
-  background: #51B767;
-  color: #ffffff;
-  padding: 15px;
-  border-radius: 0;
-  font-weight: bold;
-  font-size: 15px;
-  border: 0;
-}
-.cards {
-  background: #F5F5F5;
-  height:100px;
-}
- .cards:hover {
-  transform: translateY(-0.5em);
-  background: #EBEBEB;
-}
-.cards {
-  column-count: 1;
-  column-gap: 1em;
-  margin-top: 80px;
-}
 img {
     display: block;
     margin-left: auto;
